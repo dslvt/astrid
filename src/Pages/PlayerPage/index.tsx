@@ -1,14 +1,11 @@
-import React from "react";
+import { useState, useEffect, useContext } from 'react';
+import React from 'react';
+import FileContext from '../../utils/file-context';
 
-const ImportPage = () => {
-  return (
-    <div>
-      Player page
-      <a href="/menu">Menu</a>
-      <a href="/player">Player</a>
-      <a href="/import">Import</a>
-    </div>
-  );
+const PlayerPage = () => {
+  const { file, setFile } = useContext(FileContext);
+
+  return <div>{JSON.stringify(file)}</div>;
 };
 
-export default ImportPage;
+export default PlayerPage;

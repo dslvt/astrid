@@ -1,10 +1,14 @@
 import React from 'react';
 import { Formik, Field, Form } from 'formik';
 import useList from '../../utils/useList';
+import { useHistory } from 'react-router-dom';
+import FileContext from '../../utils/file-context';
 
 const ImportPage = () => {
   // return <div className="import-page">name \n file \n text \n ok \n</div>;
-  const [filesList, updateList] = useList();
+  const [_, updateList] = useList();
+  const history = useHistory();
+  const { file, setFile } = React.useContext(FileContext);
 
   return (
     <div className="import-page">
@@ -15,8 +19,9 @@ const ImportPage = () => {
           file: {},
         }}
         onSubmit={async (values) => {
-          console.log(values);
+          setFile(values);
           updateList(values);
+          history.push('/player');
         }}
       >
         {(props) => (
