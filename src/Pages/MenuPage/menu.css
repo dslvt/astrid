@@ -1,0 +1,25 @@
+.new-button {
+  border-color: var(--green);
+  border-width: 0.2rem;
+  color: var(--green);
+  width: 100%;
+}
+
+.menu-page {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.menu-page h1 {
+  margin-bottom: 0.5rem;
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.menu-page .texts-list {
+  height: 100vh;
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
