@@ -19,6 +19,12 @@ body {
   align-items: center;
 }
 
+body,
+html,
+#root {
+  height: 100%;
+}
+
 button {
   background-color: white;
   padding: 10px 20px;
