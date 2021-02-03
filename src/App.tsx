@@ -22,7 +22,11 @@ export default function App() {
   const [file, setFile] = React.useState<any>({
     title: 'dialog',
     text,
-    file: {},
+    file: {
+      name: '35 Дорожка 35.mp3',
+      path: '/Users/buldiga/Desktop/35 Дорожка 35.mp3',
+      type: 'audio/mpeg',
+    },
   });
   const value = { file, setFile };
 
