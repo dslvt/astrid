@@ -82,7 +82,7 @@ const PlayerPage = () => {
       <button className={s.backButton} onClick={() => history.push('/')}>
         back
       </button>
-      <Text text={text} />
+      <Text text={text} currentTime={seek} title={title} />
       <div className={s.playerWrapper}>
         <Player
           isPlaying={isPlaying}
