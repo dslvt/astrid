@@ -4,8 +4,9 @@ import useList from '../../utils/useList';
 import { useHistory } from 'react-router-dom';
 import FileContext from '../../utils/file-context';
 
+import s from './style.css';
+
 const ImportPage = () => {
-  // return <div className="import-page">name \n file \n text \n ok \n</div>;
   const [_, updateList] = useList();
   const history = useHistory();
   const { file, setFile } = React.useContext(FileContext);
@@ -19,6 +20,7 @@ const ImportPage = () => {
           file: {},
         }}
         onSubmit={async (values) => {
+          console.log('a');
           setFile(values);
           updateList(values);
           history.push('/player');
@@ -26,13 +28,13 @@ const ImportPage = () => {
       >
         {(props) => (
           <Form>
-            <label htmlFor="title">Title</label>
+            <h3 className={s.title}>Title</h3>
             <Field id="title" name="title" />
 
-            <label htmlFor="text">Text</label>
+            <h3 className={s.title}>Text</h3>
             <Field id="text" name="text" component="textarea" />
 
-            <label htmlFor="file">File</label>
+            <h3 className={s.title}>File</h3>
             <Field
               id="file"
               name="file"
@@ -47,7 +49,10 @@ const ImportPage = () => {
                 />
               )}
             />
-            <button type="submit">Submit</button>
+            <div className={s.controls}>
+              <button onClick={() => history.push('/')}>Back</button>
+              <button type="submit">Submit</button>
+            </div>
           </Form>
         )}
       </Formik>
