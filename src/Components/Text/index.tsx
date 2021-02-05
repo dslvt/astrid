@@ -3,13 +3,12 @@ import { usePopper } from 'react-popper';
 import useFile from '../../utils/useFile';
 
 const Text = (props: any) => {
-  const { title, text, currentTime } = props;
+  const { title, text, currentTime, wordsList, updateWords, deleteWords } = props;
   const [referenceElement, setReferenceElement] = useState<any>(null);
   const [popperElement, setPopperElement] = useState<any>(null);
   const [arrowElement, setArrowElement] = useState<any>(null);
   // const [visible, setVisibility] = useState(false);
   const [activeElement, setActiveElement] = useState<any>();
-  const [wordsList, updateWords, deleteWords] = useFile(title);
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     modifiers: [{ name: 'arrow', options: { element: arrowElement } }],
   });
@@ -22,18 +21,30 @@ const Text = (props: any) => {
     updateWords({ id: activeElement, start: currentTime, end: -1 });
   };
 
-  console.log(wordsList);
-
   return (
     <div className="text">
       {text.split(/[\n\r\s]/i).map((s: any, index: any): any => {
         const clearWord = removePunctuation(s);
         const id = `${clearWord}$${index}`;
+        let color = '';
+        if (activeElement === id) {
+          color = 'red';
+        } else if (
+          id in wordsList &&
+          wordsList[id].start <= currentTime &&
+          (wordsList[id].end === -1
+            ? wordsList[id].start + 0.5 >= currentTime
+            : wordsList[id].end)
+        ) {
+          color = 'blue';
+        } else {
+          color = 'black';
+        }
         return (
           <span
             key={`${id}-word`}
             style={{
-              color: activeElement === id ? 'red' : 'black',
+              color: color,
               fontWeight: id in wordsList ? 'bold' : 'normal',
             }}
             ref={activeElement === id ? setReferenceElement : null}
