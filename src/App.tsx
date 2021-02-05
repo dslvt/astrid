@@ -19,15 +19,7 @@ André: Bon, maintenant, je dois partir. Tu voudrais que je t’accompagne demai
 Martine: Oui, merci, c’est très aimable de ta part…`;
 
 export default function App() {
-  const [file, setFile] = React.useState<any>({
-    title: 'dialog',
-    text,
-    file: {
-      name: '35 Дорожка 35.mp3',
-      path: '/Users/buldiga/Desktop/35 Дорожка 35.mp3',
-      type: 'audio/mpeg',
-    },
-  });
+  const [file, setFile] = React.useState<any>({});
   const value = { file, setFile };
 
   return (
@@ -37,10 +29,10 @@ export default function App() {
           <Route path="/import">
             <ImportPage />
           </Route>
-          <Route path="/">
+          <Route path="/player">
             <PlayerPage />
           </Route>
-          <Route path="/menu">
+          <Route path="/">
             <MenuPage />
           </Route>
         </Switch>

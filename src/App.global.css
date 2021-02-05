@@ -2,44 +2,38 @@
  * @NOTE: Prepend a `~` to css file paths that are in your node_modules
  *        See https://github.com/webpack-contrib/sass-loader#imports
  */
+
+html {
+  font-family: 'Inter,Helvetica,Arial,sans-serif';
+}
+
 body {
+  --transparentGrey: rgba(88, 93, 96, 0.05);
+  --darkerOverlay: rgba(88, 93, 96, 0.15);
+  --creamWhite: #fefdfb;
+  --darkGrey: #0a171c;
+  --purple: #9b51e0;
+  --transparentPurple: rgba(155, 81, 224, 0.1);
+  --green: #0b843e;
+  --transparentGreen: rgba(11, 132, 62, 0.1);
+  --blue: #2779a7;
+  --transparentBlue: rgba(39, 121, 167, 0.1);
+  --grey: #515557;
   position: relative;
   color: white;
   height: 100vh;
-  background: linear-gradient(
-    200.96deg,
-    #fedc2a -29.09%,
-    #dd5789 51.77%,
-    #7a2c9e 129.35%
-  );
-  font-family: sans-serif;
+  background: var(--transparentGrey);
   overflow-y: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Inter,Helvetica,Arial,sans-serif';
 }
 
 body,
 html,
 #root {
   height: 100%;
-}
-
-button {
-  background-color: white;
-  padding: 10px 20px;
-  margin: 10px;
-  border-radius: 10px;
-  border: none;
-  appearance: none;
-  font-size: 1.3rem;
-  box-shadow: 0px 8px 28px -6px rgba(24, 39, 75, 0.12),
-    0px 18px 88px -4px rgba(24, 39, 75, 0.14);
-  transition: transform ease-in 0.1s;
-}
-
-button:hover {
-  transform: scale(1.05);
 }
 
 li {
@@ -61,4 +55,43 @@ a:hover {
   justify-content: center;
   align-items: center;
   margin: 20px 0;
+}
+
+h1 {
+  font-size: 6rem;
+  font-family: 'Inter';
+}
+
+h2 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-weight: 900;
+  color: var(--darkGrey);
+  font-family: 'Inter';
+}
+
+button {
+  padding: 0.8rem 1.2rem;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  border-radius: 0.6rem;
+  border-style: solid;
+  background-color: transparent;
+  transition-duration: 0.2s;
+  outline-offset: 0;
+  -webkit-appearance: none;
+  box-shadow: none;
+}
+
+.all {
+  border-color: var(--darkGrey);
+  border-width: 0.2rem;
+  color: var(--darkGrey);
 }
