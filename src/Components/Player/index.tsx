@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import { Direction, FormattedTime, Slider } from 'react-player-controls';
+import pause from '../../icons/pause.svg';
+import play from '../../icons/play.svg';
+import repeatOff from '../../icons/repeat-off.svg';
+import repeat from '../../icons/repeat.svg';
+import skipNext from '../../icons/skip-next.svg';
+import skipPrevious from '../../icons/skip-previous.svg';
 import s from './style.css';
 
 // A colored bar that will represent the current value
@@ -76,21 +82,20 @@ const Player = (props: any) => {
       <div className={s.playerControls}>
         <button onClick={onRate}>{rate}</button>
         <button disabled={!hasPrevious} onClick={onPrevious}>
-          {/* <Icon.Previous /> */}
-          prev
+          <img src={skipPrevious} />
         </button>
 
         <button onClick={() => onPlaybackChange(!isPlaying)}>
-          {/* {isPlaying ? <Icon.Pause /> : <Icon.Play />} */}
-          {isPlaying ? 'pause' : 'play'}
+          <img src={isPlaying ? play : pause} />
         </button>
 
         <button disabled={!hasNext} onClick={onNext}>
-          {/* <Icon.Next /> */}
-          next
+          <img src={skipNext} />
         </button>
 
-        <button onClick={onLoop}>{loop ? 'loop' : 'noloop'}</button>
+        <button onClick={onLoop}>
+          <img src={loop ? repeat : repeatOff} />
+        </button>
       </div>
       <div className={s.slider}>
         <FormattedTime numSeconds={currentTime} />

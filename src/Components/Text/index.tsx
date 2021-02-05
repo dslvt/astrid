@@ -1,9 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { usePopper } from 'react-popper';
-import useFile from '../../utils/useFile';
+
+import s from './style.css';
 
 const Text = (props: any) => {
-  const { title, text, currentTime, wordsList, updateWords, deleteWords } = props;
+  const {
+    title,
+    text,
+    currentTime,
+    wordsList,
+    updateWords,
+    deleteWords,
+  } = props;
   const [referenceElement, setReferenceElement] = useState<any>(null);
   const [popperElement, setPopperElement] = useState<any>(null);
   const [arrowElement, setArrowElement] = useState<any>(null);
@@ -22,13 +30,13 @@ const Text = (props: any) => {
   };
 
   return (
-    <div className="text">
-      {text.split(/[\n\r\s]/i).map((s: any, index: any): any => {
+    <div className={s.text}>
+      {text.split(/[\s]/i).map((s: any, index: any): any => {
         const clearWord = removePunctuation(s);
         const id = `${clearWord}$${index}`;
         let color = '';
         if (activeElement === id) {
-          color = 'red';
+          color = '#9b51e0';
         } else if (
           id in wordsList &&
           wordsList[id].start <= currentTime &&
@@ -36,9 +44,9 @@ const Text = (props: any) => {
             ? wordsList[id].start + 0.5 >= currentTime
             : wordsList[id].end)
         ) {
-          color = 'blue';
+          color = '#2779a7';
         } else {
-          color = 'black';
+          color = '#0a171c';
         }
         return (
           <span
@@ -54,7 +62,7 @@ const Text = (props: any) => {
               setActiveElement(id);
             }}
           >
-            {`${s} ${index !== text.split(' ').lenght - 1 && ' '}`}
+            {`${s.endsWith(':') && index !== 0 ? '\n' : ''}${s} `}
           </span>
         );
       })}

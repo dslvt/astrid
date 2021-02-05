@@ -1,0 +1,10 @@
+.text {
+  font-family: 'Inter';
+  white-space: pre-wrap;
+  font-size: 1.3rem;
+  height: 70vh;
+  overflow-y: auto;
+  max-width: 43rem;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+}

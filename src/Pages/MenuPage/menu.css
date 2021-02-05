@@ -45,6 +45,7 @@
   border-radius: 0.8rem;
   transition-duration: 0.2s;
   opacity: 0.95;
+  cursor: pointer;
 }
 
 .new-button {

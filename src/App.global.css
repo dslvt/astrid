@@ -30,6 +30,7 @@ body {
   align-items: center;
   font-family: 'Inter,Helvetica,Arial,sans-serif';
   -webkit-font-smoothing: antialiased;
+  margin: 0;
 }
 
 body,

@@ -113,7 +113,7 @@ const PlayerPage = () => {
 
   return (
     <div className={s.playerPage}>
-      <h2>{title}</h2>
+      <h2 className={s.title}>{title}</h2>
       <button className={s.backButton} onClick={() => history.push('/')}>
         back
       </button>

@@ -6,3 +6,9 @@
 .slider p {
   margin: 0;
 }
+
+.player {
+  border-top: 1px black solid;
+  margin: 0 -2rem;
+  background-color: var(--creamWhite);
+}
