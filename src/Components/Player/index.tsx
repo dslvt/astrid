@@ -80,29 +80,39 @@ const Player = (props: any) => {
   return (
     <div className={s.player}>
       <div className={s.playerControls}>
-        <button onClick={onRate}>{rate}</button>
-        <button disabled={!hasPrevious} onClick={onPrevious}>
+        <button onClick={onRate} className={s.playerButton}>
+          {rate}
+        </button>
+        <button
+          disabled={!hasPrevious}
+          onClick={onPrevious}
+          className={s.playerButton}
+        >
           <img src={skipPrevious} />
         </button>
 
-        <button onClick={() => onPlaybackChange(!isPlaying)}>
+        <button
+          onClick={() => onPlaybackChange(!isPlaying)}
+          className={s.playerButton}
+        >
           <img src={isPlaying ? play : pause} />
         </button>
 
-        <button disabled={!hasNext} onClick={onNext}>
+        <button disabled={!hasNext} onClick={onNext} className={s.playerButton}>
           <img src={skipNext} />
         </button>
 
-        <button onClick={onLoop}>
+        <button onClick={onLoop} className={s.playerButton}>
           <img src={loop ? repeat : repeatOff} />
         </button>
       </div>
       <div className={s.slider}>
-        <FormattedTime numSeconds={currentTime} />
+        <FormattedTime numSeconds={currentTime} className={s.time} />
         <Slider
           direction={Direction.HORIZONTAL}
           style={{
-            width: 200,
+            maxWidth: 500,
+            width: '80vw',
             height: 8,
             borderRadius: 4,
             background: 'whitesmoke',
@@ -114,7 +124,7 @@ const Player = (props: any) => {
         >
           <SliderBar
             value={currentTime / totalTime}
-            style={{ background: isEnabled ? 'green' : 'gray' }}
+            style={{ background: isEnabled ? '#2779a7' : 'gray' }}
           />
           <SliderBar
             value={lastIntent}
@@ -122,10 +132,10 @@ const Player = (props: any) => {
           />
           <SliderHandle
             value={currentTime / totalTime}
-            style={{ background: isEnabled ? 'green' : 'gray' }}
+            style={{ background: isEnabled ? '#2779a7' : 'gray' }}
           />
         </Slider>
-        <FormattedTime numSeconds={totalTime} />
+        <FormattedTime numSeconds={totalTime} className={s.time} />
       </div>
     </div>
   );
