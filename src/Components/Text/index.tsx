@@ -12,14 +12,38 @@ const Text = (props: any) => {
     updateWords,
     deleteWords,
   } = props;
-  const [referenceElement, setReferenceElement] = useState<any>(null);
-  const [popperElement, setPopperElement] = useState<any>(null);
+  const referenceElement = useRef(null);
+  const popperElement = useRef(null);
   const [arrowElement, setArrowElement] = useState<any>(null);
-  // const [visible, setVisibility] = useState(false);
+  const [visible, setVisibility] = useState(false);
   const [activeElement, setActiveElement] = useState<any>();
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    modifiers: [{ name: 'arrow', options: { element: arrowElement } }],
-  });
+  const [additionalUpdate, setAdditionalUpdate] = useState(false);
+  const { styles, attributes } = usePopper(
+    referenceElement.current,
+    popperElement.current,
+    {
+      modifiers: [{ name: 'arrow', options: { element: arrowElement } }],
+    }
+  );
+
+  useEffect(() => {
+    document.addEventListener('click', handleDocumentClick);
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    };
+  }, []);
+
+  const handleDocumentClick = (event: any): any => {
+    if (
+      referenceElement.current === null ||
+      referenceElement.current!.contains(event.target)
+    ) {
+      return;
+    }
+    setVisibility(false);
+  };
+
+  console.log('reference', referenceElement.current, activeElement);
 
   const removePunctuation = (removeText: any) => {
     return removeText.replace(/[.,\/#!$%\^&\*;:{}=\_`~()?:]/g, '');
@@ -35,7 +59,7 @@ const Text = (props: any) => {
         const clearWord = removePunctuation(s);
         const id = `${clearWord}$${index}`;
         let color = '';
-        if (activeElement === id) {
+        if (activeElement === id && visible) {
           color = '#9b51e0';
         } else if (
           id in wordsList &&
@@ -55,10 +79,9 @@ const Text = (props: any) => {
               color: color,
               fontWeight: id in wordsList ? 'bold' : 'normal',
             }}
-            ref={activeElement === id ? setReferenceElement : null}
+            ref={activeElement === id ? referenceElement : null}
             onClick={(e: any) => {
-              console.log(clearWord);
-              // setVisibility(!visible);
+              setVisibility(true);
               setActiveElement(id);
             }}
           >
@@ -67,8 +90,8 @@ const Text = (props: any) => {
         );
       })}
       <div
-        ref={setPopperElement}
-        style={{ ...styles.popper, display: true ? 'block' : 'none' }}
+        ref={popperElement}
+        style={{ ...styles.popper, display: visible ? 'block' : 'none' }}
         // style={styles.popper}
         {...attributes.popper}
       >
